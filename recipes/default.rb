@@ -6,10 +6,14 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "yum"
-# The only step that I can think of is getting it installed via a package
-yum_package "ntp" do 
-	action :install
+# include_recipe "yum"
+
+# # The only step that I can think of is getting it installed via a package
+node['ntp']['packages'].each do |ntppkg|
+yum_package ntppkg 
 end
 
-# download the tar into the shared folder to get things properly working
+# service "ntp" do
+# 	action [:enable, :start]
+# end
+# 
