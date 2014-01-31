@@ -6,9 +6,10 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
-
+include_recipe "yum"
 # The only step that I can think of is getting it installed via a package
-package "ntp" do 
+yum_package "ntp" do 
 	action :install
 end
 
+# download the tar into the shared folder to get things properly working

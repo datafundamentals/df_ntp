@@ -1,7 +1,9 @@
----
 driver:
   name: vagrant
 
+driver_config:
+  customize:
+    memory: 1024  
 provisioner:
   name: chef_solo
 
