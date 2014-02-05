@@ -13,7 +13,22 @@ node['ntp']['packages'].each do |ntppkg|
 yum_package ntppkg 
 end
 
-# service "ntp" do
-# 	action [:enable, :start]
-# end
-# 
+
+# turn on the ntp service
+bash "start ntp service " do 
+	user "root" 
+	command "chkconfig ntp on" 
+	action :run
+end 
+
+# synch the clock with the NTP server
+
+bash "sync-clock" do 
+user "root" 
+command "ntpdate pool.ntp.org"
+action :run 
+end
+
+service "ntpd" do 
+	action [:enable, :start]
+end
