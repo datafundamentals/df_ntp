@@ -6,29 +6,13 @@
 # 
 # All rights reserved - Do Not Redistribute
 #
-# include_recipe "yum"
 
-# # The only step that I can think of is getting it installed via a package
-node['ntp']['packages'].each do |ntppkg|
-yum_package ntppkg 
+package "ntp" do
+	action :install 
 end
 
-
-# turn on the ntp service
-bash "start ntp service " do 
-	user "root" 
-	command "chkconfig ntp on" 
+execute "ntpd -g" do 
+	user "root"
 	action :run
-end 
-
-# synch the clock with the NTP server
-
-bash "sync-clock" do 
-user "root" 
-command "ntpdate pool.ntp.org"
-action :run 
 end
 
-service "ntpd" do 
-	action [:enable, :start]
-end

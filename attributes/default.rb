@@ -1,4 +1,4 @@
 
 
 # intsall packages
-default['ntp']['packages']= %W{ntp ntpdate ntp-doc}
+default['df_ntp']['packages']= %W{file:///vagrant/binaries/ntp-4.2.6p5.tar.gz}
